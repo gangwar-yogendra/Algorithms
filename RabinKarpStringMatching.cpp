@@ -40,7 +40,9 @@ void substring(char *text, char *substr, int position, int len ) {
 }
 
 int search(char *text, char *pattern) {
+	/* length of text string */
 	int n = strlen(text);
+	/* length of pattern */ 
 	int m = strlen(pattern);
 	
 	int hashPattern = hashFunction(pattern);
