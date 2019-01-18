@@ -266,50 +266,30 @@ end func
 
 
 void countSort(int A[], int size) {
-	int k = 10;
-	int arrSize = size;
+    int k = 10;
+    int arrSize = size;
     int B[arrSize];
-	int C[k];
+    int C[k];
 
-    std::cout<<"C[k]: ";	
-	for(int i = 0; i<k; i++) {
-		C[i] = 0;
-	    /* For Testing */
-        std::cout<<C[i]<<" ";
-	}
-    std::cout<<"\n";
+    for(int i = 0; i<k; i++) {
+        C[i] = 0;
+    }
 
-	for(int i = 0; i<size; i++) {
-		C[A[i]] = C[A[i]] + 1;
-	}
+    for(int i = 0; i<size; i++) {
+        C[A[i]] = C[A[i]] + 1;
+    }
+		
+    for(int i = 1; i < k; i++) {
+        C[i] = C[i] + C[i-1];
+    }
 	
-	/* For Testing START */
-    std::cout<<"C[k]: ";
-	for(int i = 0; i<k; i++) {		
-        std::cout<<C[i]<<" ";
-	}
-    std::cout<<"\n";
-	/* For Testing END */
-	
-	for(int i = 1; i < k; i++) {
-		C[i] = C[i] + C[i-1];
-	}
-	
-	/* For Testing START*/
-    std::cout<<"C[k]: ";
-	for(int i = 0; i<k; i++) {		
-        std::cout<<C[i]<<" ";
-	}
-    std::cout<<"\n";
-	/* For Testing END*/
-	
-	for(int j = size-1; j>=0; j--) {
-		B[C[A[j]]-1] = A[j];
-		C[A[j]] = C[A[j]]-1;
-	}
+    for(int j = size-1; j>=0; j--) {
+        B[C[A[j]]-1] = A[j];
+        C[A[j]] = C[A[j]]-1;
+    }
 	
     std::cout<<"Sorted Array: "<<std::endl;	
-	for (int i=0; i<size; i++)
+    for (int i=0; i<size; i++)
         printf("%d ", B[i]);
 	
     std::cout<<"\n";
@@ -340,44 +320,44 @@ int main(int arc, char **argv) {
 
 
 void swap(int &a, int &b) {
-	if(a == b) {
-		return;
-	}
-	a=a+b;
-	b=a-b;
-	a=a-b;
+    if(a == b) {
+        return;
+    }
+    a=a+b;
+    b=a-b;
+    a=a-b;
 }
 
 void maxHeap(int arr[], int index, int arrSize) {
-	int l = 2*index + 1;
-	int r = 2*index + 2;
+    int l = 2*index + 1;
+    int r = 2*index + 2;
 	
-	int largest;
+    int largest;
 	
-	if(l < arrSize && arr[l] > arr[index]) {
-		largest = l;
-	}
-	else
-	{
-		largest = index;
-	}
+    if(l < arrSize && arr[l] > arr[index]) {
+        largest = l;
+    }
+    else
+    {
+        largest = index;
+    }
 	
-	if(r < arrSize && arr[r] > arr[largest]) {
-		largest = r;
-	}
+    if(r < arrSize && arr[r] > arr[largest]) {
+        largest = r;
+    }
 	
-	if(largest != index) {
-		swap(arr[index], arr[largest]);
-		maxHeap(arr, largest, arrSize);
-	}	
+    if(largest != index) {
+        swap(arr[index], arr[largest]);
+        maxHeap(arr, largest, arrSize);
+    }
 }
 
 void heapSort(int arr[], int n) {
-	for(int i = (n/2)-1; i>=0 ; i--) {
-		maxHeap(arr, i, n);
-	}
+    for(int i = (n/2)-1; i>=0 ; i--) {
+        maxHeap(arr, i, n);
+    }
 	
-	// One by one extract an element from heap
+    // One by one extract an element from heap
     for (int i=n-1; i>=0; i--)
     {
         // Move current root to end
